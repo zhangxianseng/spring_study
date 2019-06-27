@@ -1,0 +1,28 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- Spring支持如下三种方式创建Bean
+    1：调用构造器创建Bean
+    2：调用静态工厂方法创建Bean
+    3：调用实例工厂方法创建Bean-->
+
+    <!--通过构造方法创建bean对象-->
+    <bean id="springHelloWorld" class="com.example.spring.service.serviceimpl.HelloWorldImpl"></bean>
+    <bean id="person" class="com.example.spring.model.Person">
+        <!-- 通过构造方法赋值 -->
+        <constructor-arg name="name" value="张三"></constructor-arg>
+    </bean>
+
+    <!--通过静态工厂创建bean对象-->
+    <bean id="chinese" class="com.example.spring.factory.CountryStaticFactory" factory-method="getCountry">
+        <property name="msg" value="我是静态工厂"></property>
+    </bean>
+
+    <!--通过实例化工厂创建bean对象-->
+    <bean id="countryFactory" class="com.example.spring.factory.CountryFactory"></bean>
+    <bean id="ch" factory-bean="countryFactory" factory-method="newInstance">
+        <property name="msg" value="我是实例化工厂"></property>
+    </bean>
+
+</beans>
